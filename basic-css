@@ -1,0 +1,158 @@
+/*
+Importation de la typographie depuis google font
+*/
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+/* These are the default options for the entire browser window */
+tw-story {	
+	background-color: #ffffff; 
+	/* Color is the foreground / font color */
+	color: #000000;
+	/* Make sure the first font listed is one of the fonts you imported above */
+	font-family: 'Arvo', sans-serif;
+	/* This makes the font size for normal letters just a little bit bigger than default */
+	font-size: 1.25em;
+}
+
+/* These are the default options for the each passage area */
+tw-passage {
+	/* 
+		This lets the story take up most of its width up to a maximum readable width 
+		an `em` is about the width of one of your letters.  max-width lets the size
+		get wider and wider with the size of the window but only to a sane point
+		
+		It's ok to experiment with making this smaller or larger
+	*/
+  	width: 50%;
+    max-width: 55em;
+	/* This centers the main story column in the window */
+    margin: 0 auto 0 auto;
+}
+
+/* The sidebar with scoring and the back button */
+tw-sidebar { 
+	background: #ffffff;
+	color: #ffffff;
+	/* 
+		Gives the sidebar rounded corners.  Remove for no corners or make the number
+		higher for more rounded colors.
+		
+	*/
+	border-radius: 10px;
+
+	/* Uncomment to hide the sidebar completely */
+	/* display: none; */ 
+}
+
+/*
+  BASIC LINK STYLES
+  
+  This covers various different kinds of links in Harlowe
+*/
+.enchantment-link, tw-link, a {
+	color: #000000; 
+  	font-weight: normal; 
+
+	/* Adds a glow to links.  You can make it a seperate color from the text 
+	   The numbers mean, in order: 
+	   - How far to the right of the letter (0 means radiating from the letter)
+	   - How far below the letter
+	   - How much blur does the glow/shadow have
+	   - What color is the shadow
+	*/
+	text-shadow: 0 0 5px #000000;
+}
+/* Links that have already been visited */
+.enchantment-link:visited, tw-link:visited, .enchantment-link.visited, tw-link.visited, a:visited {
+	color: #000000; 
+	text-shadow: 0 0 5px #000000;
+}
+
+.visited:hover {
+  	color: #000000; 
+}
+
+/* Links when the mouse is over them */
+.enchantment-link:hover, tw-link:hover, a:hover {
+	color: #000000; 
+	font-weight: normal; 
+	text-shadow: 0 0 5px #e1e1e1;
+}
+
+
+/*
+	EFFECTS
+
+	Effet de texte clignotant à l'apparition Entourer son texte dans deux balises, il apparaitra en clignotant:
+	<span class="pulse-in">Text that gets shown.</span>
+*/
+@keyframes pulsein {
+  from { color: #ffffff; text-shadow: 0 0 1em #e1e1e1; }
+  to { color: #000000; text-shadow: 0 0; }
+}
+.pulse-in {
+    color: #000000;
+    font-size: 1.1em;
+    animation: pulsein 1.2s linear 3;
+}
+span.pulse-in {
+  font-size: inherit;
+}
+
+/* IMAGE STYLES */
+
+/* styles for all images by default */
+img {
+	/* for example */
+	/* border: 1px solid black; */
+}
+/* 
+   images with <img class="full-width"> will stretch 
+   to the full width of the story 
+*/
+img.full-width {
+	display:block; margin-right:auto; margin-left:auto; 
+	width: 100%;
+}
+
+
+
+
+
+/*
+Regles pour les tablettes
+*/
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+
+  tw-story {
+	  font-size: 2em;
+	  width: 100%;
+	  max-width: 95%;
+	  margin: 0 auto 0 auto;
+	  padding: 20% 10%;
+  }
+
+  tw-passage {
+	  width: 100%;
+  }  
+
+}	
+
+/*
+Regles pour les mobiles
+*/
+@media only screen and (max-device-width: 480px) {
+
+  tw-story {
+	  font-size: 2em;
+	  width: 100%;
+	  max-width: 95%;
+	  margin: 0 auto 0 auto;
+	  padding: 20% 5%;
+  }
+
+  tw-passage {
+	  width: 100%;
+  }  
+  
+}
