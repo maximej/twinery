@@ -3,95 +3,92 @@ Importation de la typographie depuis google font
 */
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 
-/* These are the default options for the entire browser window */
+/*
+Création de variables de couleurs
+*/
+:root {
+  --base: #000000; /* Couleur du texte */
+  --barre: #ffffff; /* Couleur de la bare latérale */
+  --fond: #ffffff; /* Couleur du fond de l'histoire */
+  --ombre: #ffffff; /* Couleur des ombres */
+  --liens: #000000; /* Couleur des liens */
+  --extra: #000000; /* Couleur au survol et déjà visité */
+}
+
+/* STYLES DE BASE */
+
+/* Paramètres principaux de la fenètre */
 tw-story {	
-	background-color: #ffffff; 
-	/* Color is the foreground / font color */
-	color: #000000;
-	/* Make sure the first font listed is one of the fonts you imported above */
+	background-color: var(--white); 
+	/* Color prend la couleur de la typographie */
+	color: var(--base);
+	/* Assurez vous d'avoir importé la typographie plus haut */
 	font-family: 'Arvo', sans-serif;
-	/* This makes the font size for normal letters just a little bit bigger than default */
+	/* La typographie est un peu plus grosse */
 	font-size: 1.25em;
 }
 
-/* These are the default options for the each passage area */
+/* Paramètre de chaque passage */
 tw-passage {
-	/* 
-		This lets the story take up most of its width up to a maximum readable width 
-		an `em` is about the width of one of your letters.  max-width lets the size
-		get wider and wider with the size of the window but only to a sane point
-		
-		It's ok to experiment with making this smaller or larger
-	*/
+	/* Ces deux lignes font la largeur des passages */
   	width: 50%;
     max-width: 55em;
-	/* This centers the main story column in the window */
+	/* Cette ligne centre le passage */
     margin: 0 auto 0 auto;
 }
 
-/* The sidebar with scoring and the back button */
+/* La barre latérale avec le bouton de retour */
 tw-sidebar { 
-	background: #ffffff;
-	color: #ffffff;
-	/* 
-		Gives the sidebar rounded corners.  Remove for no corners or make the number
-		higher for more rounded colors.
-		
-	*/
-	border-radius: 10px;
-
-	/* Uncomment to hide the sidebar completely */
+	background: var(--barre);
+	color: var(--base);
+	/* Ajoute des bords arrondis et un contour*/
+	border-radius: 5px;
+	border: 1px solid var(--base);
+	
+  /* Désactivez le commentaire suivant pour faire disparaitre la bare latérale */
 	/* display: none; */ 
 }
 
 /*
-  BASIC LINK STYLES
+  STYLES DE LIENS
   
-  This covers various different kinds of links in Harlowe
+  Dans cette partie sont définie les différents types de liens et leur états
 */
 .enchantment-link, tw-link, a {
-	color: #000000; 
-  	font-weight: normal; 
-
-	/* Adds a glow to links.  You can make it a seperate color from the text 
-	   The numbers mean, in order: 
-	   - How far to the right of the letter (0 means radiating from the letter)
-	   - How far below the letter
-	   - How much blur does the glow/shadow have
-	   - What color is the shadow
-	*/
-	text-shadow: 0 0 5px #000000;
+	color: var(--liens); 
+  	/* Cette ligne fait appraitre tous les liens en gras */
+  	font-weight: bold; 
+	/* Cette ligne ajoute une ombre	*/
+	text-shadow: 0 0 5px var(--ombre);
 }
-/* Links that have already been visited */
+/* Liens déjà visités */
 .enchantment-link:visited, tw-link:visited, .enchantment-link.visited, tw-link.visited, a:visited {
-	color: #000000; 
-	text-shadow: 0 0 5px #000000;
+	color: var(--extra); 
+	text-shadow: 0 0 5px var(--ombre);
+}
+
+/* Liens survolés */
+.enchantment-link:hover, tw-link:hover, a:hover {
+	color: var(--extra); 
+	text-shadow: 0 0 5px (--ombre);
 }
 
 .visited:hover {
-  	color: #000000; 
+  	color: var(--extra); 
 }
-
-/* Links when the mouse is over them */
-.enchantment-link:hover, tw-link:hover, a:hover {
-	color: #000000; 
-	font-weight: normal; 
-	text-shadow: 0 0 5px #e1e1e1;
-}
-
 
 /*
-	EFFECTS
+	EFFETS
 
 	Effet de texte clignotant à l'apparition Entourer son texte dans deux balises, il apparaitra en clignotant:
 	<span class="pulse-in">Text that gets shown.</span>
 */
 @keyframes pulsein {
-  from { color: #ffffff; text-shadow: 0 0 1em #e1e1e1; }
-  to { color: #000000; text-shadow: 0 0; }
+  from { color: var(--fond); text-shadow: 0 0 1em var(--ombre); }
+  to { color: var(--base); text-shadow: 0 0; }
 }
 .pulse-in {
-    color: #000000;
+    color: var(--base);
     font-size: 1.1em;
     animation: pulsein 1.2s linear 3;
 }
@@ -99,16 +96,14 @@ span.pulse-in {
   font-size: inherit;
 }
 
-/* IMAGE STYLES */
+/* STYLES D'IMAGE  */
 
-/* styles for all images by default */
+/* Styles pour les images par defaut */
 img {
-	/* for example */
-	/* border: 1px solid black; */
+	 border: 1px solid black; 
 }
-/* 
-   images with <img class="full-width"> will stretch 
-   to the full width of the story 
+
+/* les images avec <img class="full-width"> feront toute la taille de l'histoire 
 */
 img.full-width {
 	display:block; margin-right:auto; margin-left:auto; 
@@ -116,8 +111,7 @@ img.full-width {
 }
 
 
-
-
+/* STYLES ANNEXES */
 
 /*
 Regles pour les tablettes
@@ -131,7 +125,6 @@ Regles pour les tablettes
 	  margin: 0 auto 0 auto;
 	  padding: 20% 10%;
   }
-
   tw-passage {
 	  width: 100%;
   }  
@@ -150,7 +143,6 @@ Regles pour les mobiles
 	  margin: 0 auto 0 auto;
 	  padding: 20% 5%;
   }
-
   tw-passage {
 	  width: 100%;
   }  
